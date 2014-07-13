@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>wcfprofiler</id>
+		<version>0.0.1</version>
+		<authors>Andrew Maraev</authors>
+		<owners>Andrew Marae</owners>
+		<licenseUrl>https://github.com/the-vk/wcfprofiler/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/the-vk/wcfprofiler</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>WCF profiling tools.</description>
+		<releaseNotes>Initial release.</releaseNotes>
+		<copyright>Copyright 2014</copyright>
+		<tags>WCF Profiler</tags>
+		<dependencies>
+			<dependency id="log4net" version="2.0.3" />
+			<dependency id="Newtonsoft.Json" version="6.0.3" />
+		</dependencies>
+	</metadata>
+</package>

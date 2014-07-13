@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="wcfprofiler" default="build" xmlns="http://nant.sf.net/release/0.92/nant.xsd">
+	<property name="Configuration" value="Release" if="${not property::exists('Configuration')}" />
+	<property name="Platform" value="Any CPU" if="${not property::exists('Platform')}" />
+	<property name="NuGet" value="tools/NuGet/nuget.exe"/>
+
+	<target name="restorePackages">
+		<exec program="${NuGet}">
+			<arg value="restore" />
+		</exec>
+	</target>
+	
+	<target name="build" depends="restorePackages">
+		<msbuild project="wcfprofiler.sln">
+			<property name="Configuration" value="${Configuration}" />
+			<property name="Platform" value="${Platform}" />
+		</msbuild>
+	</target>
+
+	<target name="package" depends="package.wcfprofiler, package.wcfprofiler.tools">
+	</target>
+
+	<target name="package.wcfprofiler" depends="build">
+		<mkdir dir="package/wcfprofiler/lib/net40"/>
+
+		<copy todir="package/wcfprofiler/lib/net40">
+			<fileset basedir="src/wcfprofiler/bin/${Configuration}">
+				<include name="wcfprofiler.*"/>
+			</fileset>
+		</copy>
+
+		<copy file="wcfprofiler.nuspec" todir="package/wcfprofiler" />
+
+		<exec program="${NuGet}">
+			<arg line="pack package/wcfprofiler/wcfprofiler.nuspec" />
+		</exec>
+	</target>
+
+	<target name="package.wcfprofiler.tools" depends="build">
+		<mkdir dir="package/wcfprofiler.tools/lib/net40"/>
+
+		<copy todir="package/wcfprofiler.tools/lib/net40">
+			<fileset basedir="src/wcfprofiler.tools/bin/${Configuration}">
+				<include name="wcfprofiler.tools.*"/>
+			</fileset>
+		</copy>
+
+		<copy file="wcfprofiler.tools.nuspec" todir="package/wcfprofiler.tools" />
+
+		<exec program="${NuGet}">
+			<arg line="pack package/wcfprofiler.tools/wcfprofiler.tools.nuspec" />
+		</exec>
+	</target>
+
+	<target name="clean">
+		<msbuild project="wcfprofiler.sln" target="Clean" />
+		<delete dir="package" />
+	</target>
+</project>
