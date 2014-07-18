@@ -2,14 +2,14 @@
 <package >
 	<metadata>
 		<id>wcfprofiler.tools</id>
-		<version>0.0.1</version>
+		<version>0.0.2</version>
 		<authors>Andrew Maraev</authors>
 		<owners>Andrew Marae</owners>
 		<licenseUrl>https://github.com/the-vk/wcfprofiler/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/the-vk/wcfprofiler</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Complementary package for wcfprofiler with additional tools.</description>
-		<releaseNotes>Initial release.</releaseNotes>
+		<releaseNotes />
 		<copyright>Copyright 2014</copyright>
 		<tags>WCF Profiler</tags>
 	</metadata>
